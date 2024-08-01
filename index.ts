@@ -227,10 +227,21 @@ let numeros3: number[] = [1, 2, 30, 4, 5, 20];
 
 
 // Tarea 2
-function tipos(param1: any, param2: any, param3: any): boolean {
-    return typeof param3 !== typeof param2 ?  false : true && typeof param2 !== typeof param1 ?  false : true
+function tipos(...params: any[]): boolean | string {
+    let validation = true;
+    if (typeof params[0] !== typeof params[1]) return 'Los dos primeros parametros son de diferentes tipos';
+    
+    params.forEach(parameter => {
+        typeof parameter !== typeof params[1] ? validation = false : validation;
+    });
+
+    return validation;
 }
-// console.log(`Todos los parametros son del mismo tipo?: ${tipos(1,2,3)}`);
+
+// function tipos(param1: any, param2: any, param3: any): boolean {
+//     return typeof param3 !== typeof param2 ?  false : true && typeof param2 !== typeof param1 ?  false : true
+// }
+console.log(`Todos los parametros son del mismo tipo?: ${tipos(1,2,3,4,5,6)}`);
 
 
 // Tarea 3
@@ -245,7 +256,8 @@ function girar90(matriz: number[][]): number[][] {
 }
 
 let matriz: number[][] = [[1,2],[3,4]];
-console.log(girar90(matriz));
+// console.log(girar90(matriz));
+
 
 // ¿Qué beneficios ofrece la definición explícita de tipos en las funciones en TypeScript?
 // // Mejora la deteccion de errores y proporciona una mejor documentacion.
